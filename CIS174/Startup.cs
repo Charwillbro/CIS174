@@ -58,6 +58,12 @@ namespace CIS174
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                  name: "view_Students",
+                  template: "{controller=Assignment6_1}/{action=Index}/{accessLevel:range(1,10)}",
+                  defaults: new { accessLevel = 1 });
+
             });
         }
     }
