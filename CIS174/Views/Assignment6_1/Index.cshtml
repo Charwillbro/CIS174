@@ -1,13 +1,15 @@
 ﻿@model IEnumerable<CIS174.Models.StudentModel>
-    <div>
 
-        <strong>All Students:</strong>
-        <ul>
-            @foreach (var student in Model)
-            {
-                <li>@student.FirstName @student.LastName @student.Grade</li>
-            }
-        </ul>
-     
-    </div>
+<div>
+
+    <strong>All Students:</strong>
+    <ul>
+        @foreach (var student in Model)
+        {
+            <li>@student.FirstName @student.LastName @student.Grade</li>
+        }
+    </ul>
+   
+   
+</div>
 
