@@ -13,10 +13,12 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
-              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE="/>
+              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
     </environment>
+
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -45,7 +47,17 @@
                 </div>
             </div>
         </nav>
+
     </header>
+    <environment include="Development">
+        <div class="warning" style="background-color:red">YOU ARE CURRENTLY IN THE DEVELOPMENT ENVIRONMENT</div>
+    </environment>
+    <environment include="Testing">
+        <div class="warning" style="background-color:red">YOU ARE CURRENTLY IN THE TESTING ENVIRONMENT</div>
+    </environment>
+    <environment include="Staging">
+        <div class="warning" style="background-color:red">YOU ARE CURRENTLY IN THE STAGING ENVIRONMENT</div>
+    </environment>
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
