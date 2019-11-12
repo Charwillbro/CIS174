@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CIS174.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -27,6 +28,9 @@ namespace CIS174
         {
             var connectionString = "Server = tcp:cis174cwbroderick.database.windows.net,1433; Initial Catalog = CIS174; Persist Security Info = False; User ID = charwillbro; Password =Cwb-12022; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;";
             services.AddDbContext<PersonAccomplishmentContext>(options => options.UseSqlServer(connectionString));
+            services.AddScoped<PersonAccomplishmentContext>();
+            services.AddScoped<PersonService>();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

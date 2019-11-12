@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CIS174.Entities;
-using System;
 
 namespace CIS174.Controllers
 {
@@ -30,8 +29,7 @@ namespace CIS174.Controllers
                 return NotFound();
             }
 
-            var person = await _context.People
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var person = await _context.People.SingleOrDefaultAsync(m => m.Id == id);
             if (person == null)
             {
                 return NotFound();
@@ -147,7 +145,7 @@ namespace CIS174.Controllers
             }
 
             var person = await _context.People
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .SingleOrDefaultAsync(m => m.Id == id);
             if (person == null)
             {
                 return NotFound();
