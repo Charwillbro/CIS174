@@ -1,9 +1,7 @@
 ﻿using CIS174.Entities;
 using CIS174.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CIS174.Services
 {

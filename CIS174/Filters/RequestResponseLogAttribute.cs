@@ -4,7 +4,8 @@ using System.Diagnostics;
 
 namespace CIS174.Filters
 {
-    public class LogResourceFilter : Attribute, IResourceFilter
+    public class RequestResponseLogAttribute:Attribute, IResourceFilter
+
     {
         public void OnResourceExecuted(ResourceExecutedContext context)
         {

@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace CIS174.Filters
 {
-    public class EnsureRecipeExistsFilter : IActionFilter
+    public class EnsurePersonExistsFilter : IActionFilter
     {
         private readonly PersonService _recipeService;
 
-        public EnsureRecipeExistsFilter(PersonService recipeService)
+        public EnsurePersonExistsFilter(PersonService recipeService)
         {
             _recipeService = recipeService;
         }
@@ -29,10 +29,10 @@ namespace CIS174.Filters
         }
     }
 
-    public class EnsureRecipeExistsAttribute : TypeFilterAttribute
+    public class EnsurePersonExistsAttribute : TypeFilterAttribute
     {
-        public EnsureRecipeExistsAttribute()
-            : base(typeof(EnsureRecipeExistsFilter))
+        public EnsurePersonExistsAttribute()
+            : base(typeof(EnsurePersonExistsFilter))
         {
 
         }

@@ -8,6 +8,7 @@ namespace CIS174.Api
     [Route("api/person")]
     [FeatureEnabled(IsEnabled = true)]
     [ValidateModel]
+
     [HandleException]
     [LogResourceFilter]
     [ApiController]
@@ -21,7 +22,8 @@ namespace CIS174.Api
             _personService = personService;
         }
 
-        [EnsureRecipeExists]
+        [ExceptionLoggingAttribute]
+        [EnsurePersonExists]
         [AddLastModifiedHeader]
         [HttpGet("{id}")]
         public IActionResult Get(int id)
@@ -31,7 +33,7 @@ namespace CIS174.Api
             return Ok(detail);
         }
 
-        [EnsureRecipeExists]
+        [EnsurePersonExists]
         [HttpPost("{id}")]
         public IActionResult Edit(int id, [FromBody] UpdatePersonCommand command)
         {
@@ -41,12 +43,14 @@ namespace CIS174.Api
         }
 
         [HttpPost]
+        [Route("create")]
         public IActionResult Create( [FromBody] CreatePersonCommand command)
         {
             _personService.CreatePerson( command);
             return Ok();
         }
-        //[EnsureRecipeExists]
+
+        [EnsurePersonExists]
         [Route("delete")]
         [HttpPost]
         public IActionResult Delete( int id)
@@ -56,9 +60,5 @@ namespace CIS174.Api
             return Ok();
 
         }
-
-
-
-
     }
 }
