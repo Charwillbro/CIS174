@@ -1,8 +1,6 @@
-﻿using System;
-using CIS174.Filters;
+﻿using CIS174.Filters;
 using CIS174.Models;
 using CIS174.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CIS174.Api
@@ -11,6 +9,7 @@ namespace CIS174.Api
     [FeatureEnabled(IsEnabled = true)]
     [ValidateModel]
     [HandleException]
+    [LogResourceFilter]
     [ApiController]
     public class PersonApiController : ControllerBase
     {
@@ -40,5 +39,26 @@ namespace CIS174.Api
             return Ok();
 
         }
+
+        [HttpPost]
+        public IActionResult Create( [FromBody] CreatePersonCommand command)
+        {
+            _personService.CreatePerson( command);
+            return Ok();
+        }
+        //[EnsureRecipeExists]
+        [Route("delete")]
+        [HttpPost]
+        public IActionResult Delete( int id)
+        {
+            _personService.DeletePerson(id);
+
+            return Ok();
+
+        }
+
+
+
+
     }
 }

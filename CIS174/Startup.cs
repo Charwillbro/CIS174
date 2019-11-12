@@ -26,7 +26,7 @@ namespace CIS174
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = "Server = tcp:cis174cwbroderick.database.windows.net,1433; Initial Catalog = CIS174; Persist Security Info = False; User ID = charwillbro; Password =Cwb-12022; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;";
+            var connectionString = "Server = tcp:cis174cwbroderick.database.windows.net,1433; Initial Catalog = CIS174; Persist Security Info = False; User ID = charwillbro; Password =PublicServerPassword1; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;";
             services.AddDbContext<PersonAccomplishmentContext>(options => options.UseSqlServer(connectionString));
             services.AddScoped<PersonAccomplishmentContext>();
             services.AddScoped<PersonService>();

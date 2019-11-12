@@ -1,4 +1,5 @@
-﻿using CIS174.Models;
+﻿using CIS174.Entities;
+using CIS174.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,6 @@ namespace CIS174.Services
         {
             _personAccomplishmentContext = demoContext;
         }
-
 
         public bool DoesPersonExist(int id)
         {
@@ -51,6 +51,35 @@ namespace CIS174.Services
             person.City = command.City;
             person.State = command.State;
 
+            _personAccomplishmentContext.SaveChanges();
+        }
+
+        public int CreatePerson(CreatePersonCommand cmd)
+        {
+            var person = new Person
+            {
+                FirstName = cmd.FirstName,
+                LastName = cmd.LastName,
+                Birthdate = cmd.Birthdate,
+                City = cmd.City,
+                State = cmd.State,
+               // Accomplishments = cmd.Accomplishments?.Select(i => new Accomplishment
+               // {
+               //     Name = i.Name,
+                //    DateOfAccomplishment = i.DateOfAccomplishment,
+               // }).ToList()
+            };
+            _personAccomplishmentContext.Add(person);
+            _personAccomplishmentContext.SaveChanges();
+
+            return person.Id;
+        }
+
+
+        public void DeletePerson(int personId)
+        {
+            var person = _personAccomplishmentContext.People.Find(personId);
+            _personAccomplishmentContext.Remove(person);
             _personAccomplishmentContext.SaveChanges();
         }
     }

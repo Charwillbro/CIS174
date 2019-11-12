@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CIS174.Entities;
+using CIS174.Filters;
 
 namespace CIS174.Controllers
 {
@@ -48,16 +49,17 @@ namespace CIS174.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateModelAttribute]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Birthdate,City,State")] Person person)
         {
-            if (ModelState.IsValid)
-            {
+           // if (ModelState.IsValid)
+           //{
                 _context.Add(person);
                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(person);
+           // }
+           // return View(person);
         }
 
 

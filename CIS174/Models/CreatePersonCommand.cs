@@ -2,9 +2,9 @@
 
 namespace CIS174.Models
 {
-    public class UpdatePersonCommand
+    public class CreatePersonCommand
     {
-
+   
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -14,5 +14,6 @@ namespace CIS174.Models
         public string City { get; set; }
 
         public string State { get; set; }
+
     }
 }
