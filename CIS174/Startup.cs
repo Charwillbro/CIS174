@@ -1,7 +1,10 @@
-﻿using CIS174.Services;
+﻿using CIS174.Models;
+using CIS174.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -21,11 +24,18 @@ namespace CIS174
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();//instructed by the Identity readme
             var connectionString = "Server = tcp:cis174cwbroderick.database.windows.net,1433; Initial Catalog = CIS174; Persist Security Info = False; User ID = charwillbro; Password =PublicServerPassword1; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;";
             services.AddDbContext<PersonAccomplishmentContext>(options => options.UseSqlServer(connectionString));
             services.AddScoped<PersonAccomplishmentContext>();
             services.AddScoped<PersonService>();
             services.AddScoped<ExceptionLogService>();
+
+            var identityConnectionString = "Server = tcp:cis174cwbroderick.database.windows.net,1433; Initial Catalog = CIS174; Persist Security Info = False; User ID = charwillbro; Password =PublicServerPassword1; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;";
+            services.AddDbContext<IdentityContext>(options => options.UseSqlServer(identityConnectionString));
+            services.AddScoped<IdentityContext>();
+
+
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -34,7 +44,6 @@ namespace CIS174
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddMvc().AddXmlSerializerFormatters();
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -55,6 +64,9 @@ namespace CIS174
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseAuthentication();
+            app.UseMvc(); //instructed by the Identity readme
+
 
             app.UseMvc(routes =>
             {

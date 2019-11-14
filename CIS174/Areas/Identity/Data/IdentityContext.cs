@@ -1,19 +1,19 @@
-﻿using CIS174.Entities;
-using CIS174.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace CIS174
+namespace CIS174.Models
 {
-    public class PersonAccomplishmentContext : IdentityDbContext<IdentityUser>
+    public class IdentityContext : IdentityDbContext<IdentityUser>
     {
-        public PersonAccomplishmentContext(DbContextOptions<PersonAccomplishmentContext> options)
-           : base(options)
+        public IdentityContext(DbContextOptions<IdentityContext> options)
+            : base(options)
         {
-
         }
-       
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -22,11 +22,5 @@ namespace CIS174
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
-       
-
-        public DbSet<Person> People { get; set; }
-        public DbSet<Accomplishment> Accomplishments { get; set; }
-        public DbSet<ExceptionLog> Exceptions { get; set; }
-        public DbSet<RequestResponse> RequestResponses { get; set; }
     }
 }

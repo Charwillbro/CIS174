@@ -14,5 +14,7 @@ namespace CIS174.Entities
 
         [Display(Name = "Date of Accomplishment")]
         public DateTime DateOfAccomplishment { get; set; }
+
+        public string testMigrationField { get; set; }
     }
 }
