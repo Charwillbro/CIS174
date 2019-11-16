@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20191115225838_CustomUserData.cs" />
+    <Compile Remove="Migrations\20191115225838_CustomUserData.Designer.cs" />
     <Compile Remove="Models\MIDTERMClass.cs" />
   </ItemGroup>
 

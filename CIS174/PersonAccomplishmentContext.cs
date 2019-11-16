@@ -1,4 +1,5 @@
-﻿using CIS174.Entities;
+﻿using CIS174.Areas.Identity.Data;
+using CIS174.Entities;
 using CIS174.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -6,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CIS174
 {
-    public class PersonAccomplishmentContext : IdentityDbContext<IdentityUser>
+    public class PersonAccomplishmentContext : IdentityDbContext<PersonIdentityUser>
     {
         public PersonAccomplishmentContext(DbContextOptions<PersonAccomplishmentContext> options)
            : base(options)

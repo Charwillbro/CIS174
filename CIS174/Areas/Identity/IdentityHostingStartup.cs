@@ -1,4 +1,5 @@
 ﻿using System;
+using CIS174.Areas.Identity.Data;
 using CIS174.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -15,12 +16,12 @@ namespace CIS174.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<IdentityContext>(options =>
+                services.AddDbContext<PersonAccomplishmentContext>(options => //replaced IdentityContext with PersonAccomplishmentContext
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("IdentityContextConnection")));
 
-                services.AddDefaultIdentity<IdentityUser>()
-                    .AddEntityFrameworkStores<IdentityContext>();
+                services.AddDefaultIdentity<PersonIdentityUser>()
+                    .AddEntityFrameworkStores<PersonAccomplishmentContext>();
             });
         }
     }

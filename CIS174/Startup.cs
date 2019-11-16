@@ -32,8 +32,8 @@ namespace CIS174
             services.AddScoped<ExceptionLogService>();
 
             var identityConnectionString = "Server = tcp:cis174cwbroderick.database.windows.net,1433; Initial Catalog = CIS174; Persist Security Info = False; User ID = charwillbro; Password =PublicServerPassword1; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;";
-            services.AddDbContext<IdentityContext>(options => options.UseSqlServer(identityConnectionString));
-            services.AddScoped<IdentityContext>();
+            services.AddDbContext<PersonalAccomplishmentContext>(options => options.UseSqlServer(identityConnectionString));
+            services.AddScoped<PersonalAccomplishmentContext>();
 
 
 
@@ -60,13 +60,13 @@ namespace CIS174
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseDeveloperExceptionPage();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseMvc(); //instructed by the Identity readme
-
+            
 
             app.UseMvc(routes =>
             {

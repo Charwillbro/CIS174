@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using CIS174.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CIS174.Models
 {
-    public class IdentityContext : IdentityDbContext<IdentityUser>
+    public class PersonalAccomplishmentContext : IdentityDbContext<PersonIdentityUser>
     {
-        public IdentityContext(DbContextOptions<IdentityContext> options)
+        public PersonalAccomplishmentContext(DbContextOptions<PersonalAccomplishmentContext> options)
             : base(options)
         {
         }
