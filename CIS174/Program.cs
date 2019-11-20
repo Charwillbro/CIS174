@@ -34,7 +34,30 @@ namespace CIS174
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseSerilog()
-                .UseStartup<Startup>();
+              .ConfigureLogging((context, logging) =>
+              {
+                  logging.AddEventLog();
+              })
+            .UseSerilog()
+
+            .UseStartup<Startup>()
+
+            .ConfigureLogging(logging =>
+            {
+                // clear default logging providers
+                logging.ClearProviders();
+
+                // add built-in providers manually, as needed 
+                logging.AddConsole();
+                logging.AddDebug();
+                logging.AddEventLog();
+                logging.AddEventSourceLogger();
+                
+            })
+
+        .ConfigureLogging(builder => builder.AddSeq())
+        .ConfigureLogging(builder => builder.AddFile())
+        .ConfigureLogging(builder => builder.AddConsole());
+
     }
 }

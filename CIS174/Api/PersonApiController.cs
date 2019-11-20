@@ -2,6 +2,7 @@
 using CIS174.Models;
 using CIS174.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace CIS174.Api
 {
@@ -14,12 +15,13 @@ namespace CIS174.Api
     [ApiController]
     public class PersonApiController : ControllerBase
     {
-
+        private ILogger<PersonApiController> _log;
         public readonly PersonService _personService;
 
-        public PersonApiController(PersonService personService)
+        public PersonApiController(PersonService personService, ILogger<PersonApiController> log)
         {
             _personService = personService;
+            _log = log;
         }
 
         [ExceptionLoggingAttribute]
@@ -28,6 +30,7 @@ namespace CIS174.Api
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
+            _log.LogWarning("Logger is running");
             var detail = _personService.GetPersonDetail(id);
 
             return Ok(detail);

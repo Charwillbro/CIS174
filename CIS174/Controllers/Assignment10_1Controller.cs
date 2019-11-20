@@ -4,27 +4,33 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CIS174.Entities;
 using CIS174.Filters;
+using Microsoft.Extensions.Logging;
 
 namespace CIS174.Controllers
 {
     public class Assignment10_1Controller : Controller
     {
         private readonly PersonAccomplishmentContext _context;
+        private readonly ILogger<Assignment10_1Controller> _log;
 
-        public Assignment10_1Controller(PersonAccomplishmentContext context)
+        public Assignment10_1Controller(PersonAccomplishmentContext context, ILogger<Assignment10_1Controller> log)
         {
             _context = context;
+            _log = log;
         }
 
         // GET: Assignment10_1
         public async Task<IActionResult> Index()
         {
+            _log.LogInformation("Loaded  people");
+            _log.LogInformation("Loaded {PeopleCount} people", _context.People.Count());
             return View(await _context.People.ToListAsync());
         }
 
         // GET: Assignment10_1/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            _log.LogInformation($"Log this");
             if (id == null)
             {
                 return NotFound();
