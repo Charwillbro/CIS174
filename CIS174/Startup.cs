@@ -65,7 +65,7 @@ namespace CIS174
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseMvc(); //instructed by the Identity readme
-            loggerFactory.AddEventLog();
+            //loggerFactory.AddEventLog();
 
             app.UseMvc(routes =>
             {
