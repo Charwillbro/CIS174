@@ -9,7 +9,6 @@ namespace CIS174.Api
     [Route("api/person")]
     [FeatureEnabled(IsEnabled = true)]
     [ValidateModel]
-
     [HandleException]
     [LogResourceFilter]
     [ApiController]
